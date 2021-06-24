@@ -1,5 +1,5 @@
 ## Moodle - monitor webservice request and log them.
-Monitor `/webservice/rest/server.php` and log in/out going. Used for debugging purposes.
+Monitor `/webservice/rest/server.php` and log in/outgoing. Used for debugging purposes.
 
 ## Author
 ![MFreak.nl](https://mfreak.nl/logo_small.png)
@@ -14,6 +14,7 @@ Monitor `/webservice/rest/server.php` and log in/out going. Used for debugging p
 ![PHP7.2](https://img.shields.io/badge/PHP-7.2-brightgreen.svg)
 
 ## List of features
+- For now you can only monitor webservice calls.
 - Write to a logfile in `$CFG->tempdir\local_externalmonitor\`
 - Replay same request with a new `Curl` request to allow getting the response data for logging.
 - Viewing logs `/local/externalmonitor/view/logs.php`
@@ -29,8 +30,8 @@ Monitor `/webservice/rest/server.php` and log in/out going. Used for debugging p
 
 ## Usage
 
-After installation, you can view the webservice in/out log on `/local/externalmonitor/view/logs.php`
-This will display entries like below:
+After installation, you can view the webservice in/out traffic on `/local/externalmonitor/view/logs.php`
+This will display log entries like below:
 
 ![](pix/screen.png)
 
