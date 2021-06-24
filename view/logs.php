@@ -28,11 +28,9 @@ require_once(__DIR__ . '/../../../config.php');
 require_login();
 
 $context = context_system::instance();
-$action = optional_param('action', false, PARAM_TEXT);
 $id = optional_param('id', false, PARAM_INT);
 
 $PAGE->set_url('/local/externalmonitor/view/logs.php', [
-    'action' => $action,
     'id' => $id,
 ]);
 
@@ -42,14 +40,7 @@ $PAGE->set_heading(get_string('heading:logs', 'local_externalmonitor'));
 
 require_capability('local/externalmonitor:logs', $context);
 
-// Get current params.
+$contents = @file_get_contents(\local_externalmonitor\helper::get_logfile_from_today());
 
-switch ($action){
-    default:
-        $contents = @file_get_contents(\local_externalmonitor\helper::get_logfile_from_today());
-
-        header("Content-Type: text/plain");
-        echo $contents;
-        
-        break;
-}
+header("Content-Type: text/plain");
+echo $contents;
