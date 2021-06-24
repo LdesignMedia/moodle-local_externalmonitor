@@ -5,7 +5,7 @@ Monitor `/webservice/rest/server.php` and log in/out going. Used for debugging p
 ![MFreak.nl](https://mfreak.nl/logo_small.png)
 
 * Author: Luuk Verhoeven, [MFreak.nl](https://MFreak.nl/)
-* Min. required: Moodle 3.9.x
+* Min. required: Moodle 3.0.x
 * Supports PHP: 7.2
 
 ![Moodle39](https://img.shields.io/badge/moodle-3.9-brightgreen.svg)
