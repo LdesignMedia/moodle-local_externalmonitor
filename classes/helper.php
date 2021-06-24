@@ -61,6 +61,7 @@ class  helper {
         curl_setopt($ch, CURLOPT_TIMEOUT, 60);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 10);
         curl_setopt($ch, CURLOPT_REFERER, 'local_externalmonitor');
+        curl_setopt($ch, CURLOPT_USERAGENT, $_SERVER['HTTP_USER_AGENT'] ?? '');
 
         $contenttype = $_SERVER["CONTENT_TYPE"] ?? '';
         if ($contenttype) {
