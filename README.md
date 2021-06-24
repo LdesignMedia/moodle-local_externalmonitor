@@ -5,29 +5,34 @@ Monitor `/webservice/rest/server.php` and log in/out going. Used for debugging p
 ![MFreak.nl](https://mfreak.nl/logo_small.png)
 
 * Author: Luuk Verhoeven, [MFreak.nl](https://MFreak.nl/)
-* Min. required: Moodle 3.0.x
+* Min. required: Moodle 3.9.x
 * Supports PHP: 7.2
 
-[![Build Status](https://travis-ci.org/MFreakNL/moodle-local_commander.svg?branch=master)](https://travis-ci.org/MFreakNL/moodle-local_commander)
-![Moodle35](https://img.shields.io/badge/moodle-3.5-brightgreen.svg)
-![Moodle36](https://img.shields.io/badge/moodle-3.6-brightgreen.svg)
-![Moodle37](https://img.shields.io/badge/moodle-3.7-brightgreen.svg)
-![Moodle38](https://img.shields.io/badge/moodle-3.8-brightgreen.svg)
 ![Moodle39](https://img.shields.io/badge/moodle-3.9-brightgreen.svg)
 ![Moodle310](https://img.shields.io/badge/moodle-3.10-brightgreen.svg)
+![Moodle311](https://img.shields.io/badge/moodle-3.11-brightgreen.svg)
 ![PHP7.2](https://img.shields.io/badge/PHP-7.2-brightgreen.svg)
 
-
 ## List of features
-- Write to a logfile in `$CFG->tempdir\local_externalmonitor-`
-- Replay same request with a `Curl` to allow getting the response data.
-- @TODO page to realtime log monitor page.
+- Write to a logfile in `$CFG->tempdir\local_externalmonitor\`
+- Replay same request with a new `Curl` request to allow getting the response data for logging.
+- Viewing logs `/local/externalmonitor/view/logs.php`
+- Restrict access with capability 'local/externalmonitor:logs'
+- Cleans previous logs from previous days automatically.
+
 
 ## Installation
 1.  Copy this plugin to the `local\externalmonitor` folder on the server
 2.  Login as administrator
 3.  Go to Site Administrator > Notification
 4.  Install the plugin
+
+## Usage
+
+After installation, you can view the webservice in/out log on `/local/externalmonitor/view/logs.php`
+This will display entries like below:
+
+![](pix/screen.png)
 
 ## Security
 

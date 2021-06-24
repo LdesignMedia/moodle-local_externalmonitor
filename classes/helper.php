@@ -25,6 +25,9 @@
  **/
 
 namespace local_externalmonitor;
+
+use DirectoryIterator;
+
 defined('MOODLE_INTERNAL') || die;
 
 /**
@@ -38,6 +41,7 @@ class  helper {
      * Replay request to get response.
      *
      * @param string $location
+     * @param bool $rawdata
      *
      * @return array
      */
@@ -68,7 +72,6 @@ class  helper {
             curl_setopt($ch, CURLOPT_POSTFIELDS, $rawdata);
         }
 
-
         $output = curl_exec($ch);
 
         $http_status = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -83,9 +86,46 @@ class  helper {
             'http_status' => $http_status,
             'curl_errno' => $curl_errno,
             'curl_error' => $curl_error,
-//            'curl_info' => $curl_info,
+            'curl_info' => $curl_info,
         ];
 
+    }
+
+    /**
+     * @return string
+     */
+    public static function get_logfile_from_today(): string {
+        $dir = make_temp_directory('local_externalmonitor');
+
+        return $dir . '/' . date('Y-m-d') . '.log';
+    }
+
+    /**
+     * Log
+     *
+     * @param string $lines
+     */
+    public static function log(string $lines): void {
+        $file = self::get_logfile_from_today();
+
+        if (!file_exists($file)) {
+            self::cleanup();
+        }
+
+        error_log(PHP_EOL . $lines, 3, $file);
+    }
+
+    /**
+     * Remove old files in log directory
+     */
+    protected static function cleanup(): void {
+        // New day remove previous other.
+        $dir = make_temp_directory('local_externalmonitor');
+        foreach (new DirectoryIterator($dir) as $fileInfo) {
+            if (!$fileInfo->isDot()) {
+                unlink($fileInfo->getPathname());
+            }
+        }
     }
 
 }

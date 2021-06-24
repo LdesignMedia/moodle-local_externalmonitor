@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * EN language file
+ * Get logs files and view the content
  *
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
@@ -23,7 +23,33 @@
  * @copyright 24/06/2021 Mfreak.nl | LdesignMedia.nl - Luuk Verhoeven
  * @author    Luuk Verhoeven
  **/
-defined('MOODLE_INTERNAL') || die;
 
-$string['pluginname'] = 'External request Monitor';
-$string['heading:logs'] = 'Logs';
+require_once(__DIR__ . '/../../../config.php');
+require_login();
+
+$context = context_system::instance();
+$action = optional_param('action', false, PARAM_TEXT);
+$id = optional_param('id', false, PARAM_INT);
+
+$PAGE->set_url('/local/externalmonitor/view/logs.php', [
+    'action' => $action,
+    'id' => $id,
+]);
+
+$PAGE->set_context($context);
+$PAGE->set_title(get_string('heading:logs', 'local_externalmonitor'));
+$PAGE->set_heading(get_string('heading:logs', 'local_externalmonitor'));
+
+require_capability('local/externalmonitor:logs', $context);
+
+// Get current params.
+
+switch ($action){
+    default:
+        $contents = @file_get_contents(\local_externalmonitor\helper::get_logfile_from_today());
+
+        header("Content-Type: text/plain");
+        echo $contents;
+        
+        break;
+}

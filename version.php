@@ -15,7 +15,7 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- *
+ * Version information.
  *
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
@@ -27,6 +27,6 @@ defined('MOODLE_INTERNAL') || die;
 
 $plugin->component = 'local_externalmonitor';
 $plugin->release = '3.10.0';
-$plugin->version = 2021062304;
+$plugin->version = 2021062400;
 $plugin->requires = 2018051700;
 $plugin->maturity = MATURITY_STABLE;

@@ -35,29 +35,40 @@ function local_externalmonitor_after_config() {
         return;
     }
 
-    $file = $CFG->tempdir . '/local_externalmonitor-' . date('Y-m-d') . '.log';
-
     // Get input and log.
     $rawinput = file_get_contents("php://input");
-    error_log(
-        PHP_EOL . 'Request ' . $PAGE->url->get_path() . ' ' . date('H:i:s') . '|' . $_SERVER['REQUEST_METHOD'] .
+    \local_externalmonitor\helper::log(
+        date('H:i:s') . ' Request ' . PHP_EOL .
+        PHP_EOL . 'Method: ' . $_SERVER['REQUEST_METHOD'] .
+        PHP_EOL . 'User Agent: ' . $_SERVER['HTTP_USER_AGENT'] .
+        PHP_EOL . 'Request: ' . $PAGE->url->get_path() .
         PHP_EOL . 'GET: ' .
         PHP_EOL . print_r($_GET, true) .
         PHP_EOL . 'BODY POST/RAW:' .
         PHP_EOL . $rawinput .
-        PHP_EOL,
-        3,
-        $file);
+        PHP_EOL . '-----' .
+        PHP_EOL
+    );
 
     // Resend the request to capture the output.
     $response = \local_externalmonitor\helper::replay($CFG->wwwroot . $PAGE->url->get_path(), $rawinput);
-    error_log(
-        PHP_EOL . 'Response: ' .
+
+    $info = $response['curl_info'];
+    \local_externalmonitor\helper::log(
+
+        date('H:i:s') . ' Response ' . PHP_EOL .
+        PHP_EOL .
+        'Response code: ' . $response['http_status'] .
+        PHP_EOL . 'Total time: ' . $info['total_time'] .
+        PHP_EOL . 'Primary ip: ' . $info['primary_ip'] .
+        PHP_EOL . 'Header size: ' . $info['header_size'] .
+        PHP_EOL . 'Request size: ' . $info['request_size'] .
+        PHP_EOL .
+        PHP_EOL . 'Response body: ' .
         PHP_EOL . print_r($response['output'], true) .
         PHP_EOL .
-        PHP_EOL . str_repeat('--', 30),
-        3,
-        $file);
+        PHP_EOL . str_repeat('--', 30)
+    );
 
     die($response['output']);
 }
