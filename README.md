@@ -14,7 +14,7 @@ Monitor `/webservice/rest/server.php` and log in/outgoing. Used for debugging pu
 ![PHP7.2](https://img.shields.io/badge/PHP-7.2-brightgreen.svg)
 
 ## List of features
-- For now you can only monitor webservice calls.
+- For now, you can only monitor REST webservice calls.
 - Write to a logfile in `$CFG->tempdir\local_externalmonitor\`
 - Replay same request with a new `Curl` request to allow getting the response data for logging.
 - Viewing logs `/local/externalmonitor/view/logs.php`
