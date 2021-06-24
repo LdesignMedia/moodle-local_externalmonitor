@@ -120,7 +120,7 @@ class  helper {
      * Remove old files in log directory
      */
     protected static function cleanup(): void {
-        // New day remove previous other.
+        // New day remove previous log files.
         $dir = make_temp_directory('local_externalmonitor');
         foreach (new DirectoryIterator($dir) as $fileInfo) {
             if (!$fileInfo->isDot()) {
