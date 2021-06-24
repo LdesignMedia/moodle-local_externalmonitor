@@ -1,5 +1,6 @@
 ## Moodle - monitor webservice request and log them.
-Monitor `/webservice/rest/server.php` and log in/out going. Used for debugging purposes.
+Monitor `/webservice/rest/server.php` and log in/outgoing. 
+Used for debugging the Moodle external API.
 
 ## Author
 ![MFreak.nl](https://mfreak.nl/logo_small.png)
@@ -19,7 +20,7 @@ Monitor `/webservice/rest/server.php` and log in/out going. Used for debugging p
 
 
 ## List of features
-- Write to a logfile in `$CFG->tempdir\local_externalmonitor-`
+- Write logfile to `$CFG->tempdir\local_externalmonitor-`
 - Replay same request with a `Curl` to allow getting the response data.
 - @TODO page to realtime log monitor page.
 
