@@ -30,6 +30,12 @@
 function local_externalmonitor_after_config() {
     global $PAGE, $CFG;
 
+    $enabled = get_config('local_externalmonitor', 'enable_debugging');
+
+    if (empty($enabled)) {
+        return;
+    }
+
     // TODO setting in admin to enable/disable this feature.
     if ($_SERVER['PHP_SELF'] !== '/webservice/rest/server.php' && $_SERVER['PHP_SELF'] !== '/auth/saml2/sp/saml2-acs.php' ||
         (isset($_SERVER['HTTP_REFERER']) && $_SERVER['HTTP_REFERER'] === 'local_externalmonitor')) {
