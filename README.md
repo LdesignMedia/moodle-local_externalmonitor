@@ -20,6 +20,8 @@ Monitor `/webservice/rest/server.php` and log in/outgoing. Used for debugging pu
 - Viewing logs `/local/externalmonitor/view/logs.php`
 - Restrict access with capability 'local/externalmonitor:logs'
 - Cleans previous logs from previous days automatically.
+- Capture SAML2 requests and responses.
+- Use https://developer.pingidentity.com/en/tools/saml-decoder.html for decoded SAML2 requests.
 
 
 ## Installation

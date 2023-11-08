@@ -27,3 +27,6 @@ defined('MOODLE_INTERNAL') || die;
 
 $string['pluginname'] = 'External request Monitor';
 $string['heading:logs'] = 'Logs';
+
+$string['enable_debugging'] = 'Enable debugging';
+$string['enable_debugging_desc'] = 'Enable debugging for webservices calls and SAML2 requests';

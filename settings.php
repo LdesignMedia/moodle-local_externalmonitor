@@ -15,18 +15,28 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Version information.
+ * Plugin settings
  *
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  *
  * @package   moodle-local_externalmonitor
- * @copyright 24/06/2021 Mfreak.nl | LdesignMedia.nl - Luuk Verhoeven
+ * @copyright 08/11/2023 Mfreak.nl | LdesignMedia.nl - Luuk Verhoeven
  * @author    Luuk Verhoeven
  **/
-defined('MOODLE_INTERNAL') || die;
 
-$plugin->component = 'local_externalmonitor';
-$plugin->release = '3.10.0';
-$plugin->version = 2023110800;
-$plugin->requires = 2018051700;
-$plugin->maturity = MATURITY_STABLE;
+defined('MOODLE_INTERNAL') || die();
+
+if ($hassiteconfig) {
+    $settings = new admin_settingpage('local_externalmonitor', get_string('pluginname', 'local_externalmonitor'));
+
+    $settings->add(
+        new admin_setting_configcheckbox(
+            'local_externalmonitor/enable_debugging',
+            get_string('enable_debugging', 'local_externalmonitor'),
+            get_string('enable_debugging_desc', 'local_externalmonitor'),
+            true
+        )
+    );
+
+    $ADMIN->add('localplugins', $settings);
+}
